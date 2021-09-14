@@ -14,7 +14,10 @@ class CreateChargesTable extends Migration
     public function up()
     {
         Schema::create('charges', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->text('description');
+            $table->date('date_delivery');
+            $table->date('order_date');
             $table->timestamps();
         });
     }

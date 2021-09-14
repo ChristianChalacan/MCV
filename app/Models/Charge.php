@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Charge extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'description',
+        'date_delivery',
+        'order_date',
+    ];
 }

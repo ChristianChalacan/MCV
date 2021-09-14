@@ -14,7 +14,12 @@ class CreatePalletsTable extends Migration
     public function up()
     {
         Schema::create('pallets', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->double('gross_weight');
+            $table->double('pallet_weight');
+            $table->double('unit');
+            $table->double('gaveta_weight');
+            $table->double('net_weight');
             $table->timestamps();
         });
     }

@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Entry extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'date',
+        'turn',
+        'hour',
+        'batch',
+        'vehicle',
+        'hygiene',
+        'weight',
+        'rejection',
+        'extra',
+        'observation',
+        'availableweight',
+        'availablejabas',
+    ];
 }

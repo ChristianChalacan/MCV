@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Research extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'feature',
+        'quantity',
+        'valueone',
+        'valuetwo',
+        'valuethree',
+        'valuefour',
+        'valuefive',
+        'confirmed',
+        'organoleptic',
+    ];
 }
