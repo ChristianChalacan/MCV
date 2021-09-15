@@ -11,4 +11,9 @@ class Dispatch extends Model
     protected $fillable = [
         'date',
     ];
+
+    public function process()
+    {
+        return $this->belongsTo('App\Models\Process');
+    }
 }

@@ -11,4 +11,13 @@ class Observation extends Model
     protected $fillable = [
         'observation',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+    public function shipping()
+    {
+        return $this->belongsTo('App\Models\Shipping');
+    }
 }

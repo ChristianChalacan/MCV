@@ -14,4 +14,17 @@ class Refund extends Model
         'observation',
 
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+    public function entry()
+    {
+        return $this->belongsTo('App\Models\Entry');
+    }
+    public function provider()
+    {
+        return $this->belongsTo('App\Models\Provider');
+    }
 }

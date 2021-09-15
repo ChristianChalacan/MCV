@@ -20,7 +20,6 @@ class OrdersTableSeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
             Order::create([
                 'quantity' => $faker->numberBetween('10','1000'),
-                'product' => $faker->name,
             ]);
         }
     }
