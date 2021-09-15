@@ -19,4 +19,9 @@ class Research extends Model
         'confirmed',
         'organoleptic',
     ];
+
+    public function entry()
+    {
+        return $this->belongsTo('App\Models\Entry');
+    }
 }

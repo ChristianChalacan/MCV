@@ -12,4 +12,13 @@ class Product extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
+    public function kinds()
+    {
+        return $this->hasMany('App\Models\Kind');
+    }
 }

@@ -11,4 +11,8 @@ class Waste extends Model
     protected $fillable = [
         'quantity',
     ];
+    public function entry()
+    {
+        return $this->belongsTo('App\Models\Entry');
+    }
 }

@@ -22,4 +22,42 @@ class Entry extends Model
         'availableweight',
         'availablejabas',
     ];
+
+
+    public function wastes()
+    {
+        return $this->hasMany('App\Models\Waste');
+    }
+    public function research()
+    {
+        return $this->hasMany('App\Models\Research');
+    }
+    public function pallets()
+    {
+        return $this->hasMany('App\Models\Pallet');
+    }
+    public function refunds()
+    {
+        return $this->hasMany('App\Models\Refund');
+    }
+    public function processes()
+    {
+        return $this->hasMany('App\Models\Process');
+    }
+    public function kind()
+    {
+        return $this->belongsTo('App\Models\Kind');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+    public function charge()
+    {
+        return $this->belongsTo('App\Models\Charge');
+    }
+    public function provider()
+    {
+        return $this->belongsTo('App\Models\Provider');
+    }
 }

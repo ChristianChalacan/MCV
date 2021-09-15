@@ -13,4 +13,16 @@ class Provider extends Model
         'address',
         'phone',
     ];
+    public function charges()
+    {
+        return $this->hasMany('App\Models\Charge');
+    }
+    public function refunds()
+    {
+        return $this->hasMany('App\Models\Refund');
+    }
+    public function entries()
+    {
+        return $this->hasMany('App\Models\Entry');
+    }
 }

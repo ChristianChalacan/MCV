@@ -11,4 +11,9 @@ class Invoiced extends Model
     protected $fillable = [
         'quantity',
     ];
+
+    public function process()
+    {
+        return $this->belongsTo('App\Models\Process');
+    }
 }

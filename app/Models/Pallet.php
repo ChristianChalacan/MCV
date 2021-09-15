@@ -15,4 +15,9 @@ class Pallet extends Model
         'gaveta_weight',
         'net_weight',
     ];
+
+    public function entry()
+    {
+        return $this->belongsTo('App\Models\Entry');
+    }
 }

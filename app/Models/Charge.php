@@ -13,4 +13,17 @@ class Charge extends Model
         'date_delivery',
         'order_date',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+    public function provider()
+    {
+        return $this->belongsTo('App\Models\Provider');
+    }
+    public function entries()
+    {
+        return $this->hasMany('App\Models\Entry');
+    }
 }

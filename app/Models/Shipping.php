@@ -12,4 +12,26 @@ class Shipping extends Model
         'date',
         'confirmed',
     ];
+
+    public function processes()
+    {
+        return $this->hasMany('App\Models\Process');
+    }
+    public function observations()
+    {
+        return $this->hasMany('App\Models\Observation');
+    }
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Orders');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+    public function client()
+    {
+        return $this->belongsTo('App\Models\Client');
+    }
 }

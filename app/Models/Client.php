@@ -13,4 +13,13 @@ class Client extends Model
         'address',
         'email',
     ];
+
+    public function processes()
+    {
+        return $this->hasMany('App\Models\Process');
+    }
+    public function shippings()
+    {
+        return $this->hasMany('App\Models\Shipping');
+    }
 }

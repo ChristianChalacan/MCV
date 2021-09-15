@@ -12,4 +12,17 @@ class Order extends Model
         'quantity',
         'product',
     ];
+    public function processes()
+    {
+        return $this->hasMany('App\Models\Process');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo('App\Models\Product');
+    }
+    public function shipping()
+    {
+        return $this->belongsTo('App\Models\Shipping');
+    }
 }
