@@ -17,7 +17,7 @@ class ProductsTableSeeder extends Seeder
         Product::truncate();
         $faker = \Faker\Factory::create();
         // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 2; $i++) {
             Product::create([
                 'name' => $faker->name,
             ]);

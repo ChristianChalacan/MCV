@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Invoiced;
+use App\Models\Process;
 use Illuminate\Database\Seeder;
 
 class InvoicedsTableSeeder extends Seeder
@@ -17,9 +18,12 @@ class InvoicedsTableSeeder extends Seeder
         Invoiced::truncate();
         $faker = \Faker\Factory::create();
         // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 50; $i++) {
+        $processes = Process::all();
+
+        foreach ($processes as $process){
             Invoiced::create([
                 'quantity' => $faker->numberBetween('10','1000'),
+                'process_id' => $process->id,
             ]);
         }
     }

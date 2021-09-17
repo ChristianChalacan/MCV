@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Shipping extends Model
 {
@@ -13,6 +14,13 @@ class Shipping extends Model
         'confirmed',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->user_id = Auth::id();
+        });
+    }
     public function processes()
     {
         return $this->hasMany('App\Models\Process');

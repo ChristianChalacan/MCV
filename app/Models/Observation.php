@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Observation extends Model
 {
@@ -12,6 +13,13 @@ class Observation extends Model
         'observation',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->user_id = Auth::id();
+        });
+    }
     public function user()
     {
         return $this->belongsTo('App\Models\User');
