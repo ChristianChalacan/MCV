@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Kind;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
 class KindsTableSeeder extends Seeder
@@ -17,10 +18,15 @@ class KindsTableSeeder extends Seeder
         Kind::truncate();
         $faker = \Faker\Factory::create();
         // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 50; $i++) {
-            Kind::create([
-                'name' => $faker->name,
-            ]);
+
+        $products = Product::all();
+        foreach ($products as $product){
+            for ($i = 0; $i < 5; $i++){
+                Kind::create([
+                    'name' => $faker->name,
+                    'product_id' => $product->id,
+                ]);
+            }
         }
     }
 }

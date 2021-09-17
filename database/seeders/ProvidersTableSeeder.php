@@ -17,7 +17,7 @@ class ProvidersTableSeeder extends Seeder
         Provider::truncate();
         $faker = \Faker\Factory::create();
         // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 2; $i++) {
             Provider::create([
                 'name' => $faker->name,
                 'address' => $faker->name,

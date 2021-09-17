@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Observation;
+use App\Models\Shipping;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ObservationsTableSeeder extends Seeder
 {
@@ -17,10 +20,17 @@ class ObservationsTableSeeder extends Seeder
         Observation::truncate();
         $faker = \Faker\Factory::create();
         // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 50; $i++) {
-            Observation::create([
-                'observation' => $faker->text,
-            ]);
+
+        $users = User::all();
+        $shippings = Shipping::all();
+        foreach ($users as $user){
+            JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
+            foreach ($shippings as $shipping){
+                Observation::create([
+                    'observation' => $faker->text,
+                    'shipping_id' => $shipping->id,
+                ]);
+            }
         }
     }
 }

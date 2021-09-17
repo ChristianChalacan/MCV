@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Entry;
 use App\Models\Research;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +19,9 @@ class ResearchesTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
         $feature = 'hola';
         // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 50; $i++) {
+
+        $entries = Entry::all();
+        foreach ($entries as $entry){
             Research::create([
                 'feature' => $feature,
                 'quantity' => $faker->numberBetween(1,1000),
@@ -29,6 +32,7 @@ class ResearchesTableSeeder extends Seeder
                 'valuefive' => $faker -> numberBetween(1,5),
                 'confirmed' => $faker -> boolean,
                 'organoleptic' => $faker -> name,
+                'entry_id' => $entry->id,
             ]);
         }
     }

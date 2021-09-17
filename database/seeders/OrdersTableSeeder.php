@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\Shipping;
 use Illuminate\Database\Seeder;
 
 class OrdersTableSeeder extends Seeder
@@ -17,10 +19,17 @@ class OrdersTableSeeder extends Seeder
         Order::truncate();
         $faker = \Faker\Factory::create();
         // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 50; $i++) {
-            Order::create([
-                'quantity' => $faker->numberBetween('10','1000'),
-            ]);
+
+        $shippings = Shipping::all();
+        $products = Product::all();
+        foreach ($shippings as $shipping){
+            foreach ($products as $product){
+                Order::create([
+                    'quantity' => $faker->numberBetween('10','1000'),
+                    'shipping_id' => $shipping->id,
+                    'product_id' => $product->id,
+                ]);
+            }
         }
     }
 }

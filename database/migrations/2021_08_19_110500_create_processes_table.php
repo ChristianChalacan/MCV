@@ -23,10 +23,10 @@ class CreateProcessesTable extends Migration
             $table->double('unit');
             $table->double('packing');
             $table->double('net');
-            $table->char('product', 30);
-            $table->char('lot', 30);
+            $table->string('product');
+            $table->string('lot', 30);
             $table->double('final');
-            $table->char('guia', 30);
+            $table->string('guia', 30);
             $table->text('observation');
             $table->timestamps();
         });

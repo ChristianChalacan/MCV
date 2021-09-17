@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Charge;
+use App\Models\Provider;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ChargesTableSeeder extends Seeder
 {
@@ -18,12 +21,19 @@ class ChargesTableSeeder extends Seeder
         Charge::truncate();
         $faker = \Faker\Factory::create();
         // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 50; $i++) {
-            Charge::create([
-                'description' => $faker->text,
-                'date_delivery' => $faker->date('Y-m-d','now'),
-                'order_date'=> $faker->date('Y-m-d','now'),
-            ]);
+
+        $providers = Provider::all();
+        $users = User::all();
+        foreach ($users as $user){
+            JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
+            foreach ($providers as $provider){
+                Charge::create([
+                    'description' => $faker->text,
+                    'date_delivery' => $faker->date('Y-m-d','now'),
+                    'order_date'=> $faker->date('Y-m-d','now'),
+                    'provider_id' => $provider->id,
+                ]);
+            }
         }
     }
 }
