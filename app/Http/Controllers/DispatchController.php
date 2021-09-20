@@ -17,7 +17,8 @@ class DispatchController extends Controller
     }
     public function store(Request $request)
     {
-        $dispatch = Dispatch::create($request->all());
+        $dispatch = new Dispatch($request->all());
+        $dispatch->save();
         return response()->json($dispatch,201);
     }
     public function update(Request $request, Dispatch $dispatch)

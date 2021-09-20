@@ -17,7 +17,8 @@ class OrderController extends Controller
     }
     public function store(Request $request)
     {
-        $order = Order::create($request->all());
+        $order = new Order($request->all());
+        $order->save();
         return response()->json($order,201);
     }
     public function update(Request $request, Order $order)

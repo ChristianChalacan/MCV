@@ -14,10 +14,10 @@ class AddRelationsToOrders extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->unsignedInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
-            $table->unsignedInteger('shipping_id');
-            $table->foreign('shipping_id')->references('id')->on('shippings')->onDelete('restrict');
+            $table->unsignedInteger('product_id')->nullable();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->unsignedInteger('shipping_id')->nullable();
+            $table->foreign('shipping_id')->references('id')->on('shippings')->onDelete('cascade');
         });
     }
 

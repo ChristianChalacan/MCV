@@ -22,6 +22,9 @@ class Entry extends Model
         'observation',
         'availableweight',
         'availablejabas',
+        'kind_id',
+        'charge_id',
+        'provider_id',
     ];
 
     public static function boot()

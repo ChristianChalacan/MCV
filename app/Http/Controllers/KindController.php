@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kind;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class KindController extends Controller
@@ -17,7 +18,8 @@ class KindController extends Controller
     }
     public function store(Request $request)
     {
-        $kind = Kind::create($request->all());
+        $kind = new Kind($request->all());
+        $kind->save();
         return response()->json($kind,201);
     }
     public function update(Request $request, Kind $kind)

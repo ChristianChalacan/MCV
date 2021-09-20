@@ -17,7 +17,8 @@ class RefundController extends Controller
     }
     public function store(Request $request)
     {
-        $refund = Refund::create($request->all());
+        $refund = new Refund($request->all());
+        $refund->save();
         return response()->json($refund,201);
     }
     public function update(Request $request, Refund $refund)

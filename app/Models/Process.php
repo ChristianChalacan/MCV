@@ -23,6 +23,10 @@ class Process extends Model
         'final',
         'guia',
         'observation',
+        'shipping_id',
+        'client_id',
+        'order_id',
+        'entry_id',
     ];
     public static function boot()
     {

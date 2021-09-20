@@ -18,6 +18,7 @@ class Research extends Model
         'valuefive',
         'confirmed',
         'organoleptic',
+        'entry_id',
     ];
 
     public function entry()

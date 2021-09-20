@@ -13,6 +13,7 @@ class Charge extends Model
         'description',
         'date_delivery',
         'order_date',
+        'provider_id',
     ];
 
     public static function boot()

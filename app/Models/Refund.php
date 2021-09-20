@@ -13,7 +13,8 @@ class Refund extends Model
         'quantity',
         'confirmed',
         'observation',
-
+        'provider_id',
+        'entry_id',
     ];
     public static function boot()
     {

@@ -17,7 +17,8 @@ class PalletController extends Controller
     }
     public function store(Request $request)
     {
-        $pallet = Pallet::create($request->all());
+        $pallet = new Pallet($request->all());
+        $pallet->save();
         return response()->json($pallet,201);
     }
     public function update(Request $request, Pallet $pallet)
