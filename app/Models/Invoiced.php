@@ -10,6 +10,7 @@ class Invoiced extends Model
     use HasFactory;
     protected $fillable = [
         'quantity',
+        'process_id',
     ];
 
     public function process()

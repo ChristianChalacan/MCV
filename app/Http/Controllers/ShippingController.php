@@ -18,7 +18,8 @@ class ShippingController extends Controller
     }
     public function store(Request $request)
     {
-        $shipping = Shipping::create($request->all());
+        $shipping = new Shipping($request->all());
+        $shipping->save();
         return response()->json($shipping,201);
     }
     public function update(Request $request, Shipping $shipping)

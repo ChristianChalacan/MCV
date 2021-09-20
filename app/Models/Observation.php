@@ -11,6 +11,7 @@ class Observation extends Model
     use HasFactory;
     protected $fillable = [
         'observation',
+        'shipping_id',
     ];
 
     public static function boot()

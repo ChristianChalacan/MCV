@@ -17,7 +17,8 @@ class ProcessController extends Controller
     }
     public function store(Request $request)
     {
-        $process = Process::create($request->all());
+        $process = new Process($request->all());
+        $process->save();
         return response()->json($process,201);
     }
     public function update(Request $request, Process $process)

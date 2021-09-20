@@ -12,6 +12,7 @@ class Shipping extends Model
     protected $fillable = [
         'date',
         'confirmed',
+        'client_id',
     ];
 
     public static function boot()

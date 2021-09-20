@@ -17,7 +17,8 @@ class WasteController extends Controller
     }
     public function store(Request $request)
     {
-        $waste = Waste::create($request->all());
+        $waste = new Waste($request->all());
+        $waste->save();
         return response()->json($waste,201);
     }
     public function update(Request $request, Waste $waste)

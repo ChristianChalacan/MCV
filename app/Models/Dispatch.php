@@ -10,6 +10,7 @@ class Dispatch extends Model
     use HasFactory;
     protected $fillable = [
         'date',
+        'process_id',
     ];
 
     public function process()

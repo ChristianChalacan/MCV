@@ -17,7 +17,8 @@ class InvoicedController extends Controller
     }
     public function store(Request $request)
     {
-        $invoiced = Invoiced::create($request->all());
+        $invoiced = new Invoiced($request->all());
+        $invoiced->save();
         return response()->json($invoiced,201);
     }
     public function update(Request $request, Invoiced $invoiced)

@@ -17,7 +17,8 @@ class EntryController extends Controller
     }
     public function store(Request $request)
     {
-        $entry = Entry::create($request->all());
+        $entry = new Entry($request->all());
+        $entry->save();
         return response()->json($entry,201);
     }
     public function update(Request $request, Entry $entry)

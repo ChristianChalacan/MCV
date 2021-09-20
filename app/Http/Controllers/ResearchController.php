@@ -17,7 +17,8 @@ class ResearchController extends Controller
     }
     public function store(Request $request)
     {
-        $research = Research::create($request->all());
+        $research = new Research($request->all());
+        $research->save();
         return response()->json($research,201);
     }
     public function update(Request $request, Research $research)

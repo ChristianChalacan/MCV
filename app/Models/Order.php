@@ -10,7 +10,8 @@ class Order extends Model
     use HasFactory;
     protected $fillable = [
         'quantity',
-        'product',
+        'product_id',
+        'shipping_id'
     ];
     public function processes()
     {

@@ -14,6 +14,7 @@ class Pallet extends Model
         'unit',
         'gaveta_weight',
         'net_weight',
+        'entry_id',
     ];
 
     public function entry()

@@ -17,7 +17,8 @@ class ChargeController extends Controller
     }
     public function store(Request $request)
     {
-        $charge = Charge::create($request->all());
+        $charge = new Charge($request->all());
+        $charge->save();
         return response()->json($charge,201);
     }
     public function update(Request $request, Charge $charge)
