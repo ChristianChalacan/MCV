@@ -21,4 +21,8 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\Kind');
     }
+    public function providers()
+    {
+        return $this->belongsToMany('App\Models\Provider')->as('sell')->withTimestamps();
+    }
 }
