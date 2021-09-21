@@ -25,4 +25,8 @@ class Provider extends Model
     {
         return $this->hasMany('App\Models\Entry');
     }
+    public function products()
+    {
+        return $this->belongsToMany('App\Models\Product')->as('sell')->withTimestamps();
+    }
 }
