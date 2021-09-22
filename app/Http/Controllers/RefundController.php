@@ -4,27 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Refund;
 use Illuminate\Http\Request;
+use App\Http\Resources\Refund as RefundResource;
+use App\Http\Resources\RefundCollection;
 
 class RefundController extends Controller
 {
     public function index()
     {
-        return Refund::all();
+        return new RefundCollection(Refund::paginate(10));
     }
     public function show(Refund $refund)
     {
-        return $refund;
+        return response()->json(new RefundResource($refund),200);
+
     }
     public function store(Request $request)
     {
         $refund = new Refund($request->all());
         $refund->save();
-        return response()->json($refund,201);
+        return response()->json(new RefundResource($refund),201);
     }
     public function update(Request $request, Refund $refund)
     {
         $refund->update($request->all());
-        return response()->json($refund, 200);
+        return response()->json(new RefundResource($refund),200);
 
     }
     public function delete(Refund $refund)

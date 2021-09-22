@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use App\Http\Resources\UserCollection;
+use App\Http\Resources\User as UserResource;
+
 class UserController extends Controller
 {
     public function authenticate(Request $request)
@@ -52,7 +56,7 @@ class UserController extends Controller
         } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['token_absent'], $e->getStatusCode());
         }
-        return response()->json(compact('user'));
+        return response()->json(new UserResource($user));
     }
 
     public function logout()
@@ -69,4 +73,18 @@ class UserController extends Controller
             return response()->json(["message" => "No se pudo cerrar la sesión."], 500);
         }
     }
+
+    public function index()
+    {
+        return new UserCollection(User::paginate(10));
+    }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+        //$request->validate(self::$rules, self::$messages);
+        $user->update($request->all());
+        return response()->json($user, 200);
+    }
+
 }
