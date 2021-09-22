@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', 'App\\Http\\Controllers\\UserController@authenticate');
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'App\\Http\\Controllers\\UserController@getAuthenticatedUser');
+    Route::get('users', 'App\\Http\\Controllers\\UserController@index');
     Route::post('register', 'App\\Http\\Controllers\\UserController@register');
     Route::post('logout', 'App\\Http\\Controllers\\UserController@logout');
+    Route::put('users/{user}', 'App\\Http\\Controllers\\UserController@update');
 
     Route::get('charges', 'App\\Http\\Controllers\\ChargeController@index');
     Route::get('charges/{charge}', 'App\\Http\\Controllers\\ChargeController@show');
@@ -85,12 +87,16 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('products', 'App\\Http\\Controllers\\ProductController@store');
     Route::put('products/{product}', 'App\\Http\\Controllers\\ProductController@update');
     Route::delete('products/{product}', 'App\\Http\\Controllers\\ProductController@delete');
+    Route::get('productsproviders', 'App\\Http\\Controllers\\SellController@index_product_provider');
+    Route::get('products/{product}/providers', 'App\\Http\\Controllers\\SellController@show_product_provider');
 
     Route::get('providers', 'App\\Http\\Controllers\\ProviderController@index');
     Route::get('providers/{provider}', 'App\\Http\\Controllers\\ProviderController@show');
     Route::post('providers', 'App\\Http\\Controllers\\ProviderController@store');
     Route::put('providers/{provider}', 'App\\Http\\Controllers\\ProviderController@update');
     Route::delete('providers/{provider}', 'App\\Http\\Controllers\\ProviderController@delete');
+    Route::get('providersproducts', 'App\\Http\\Controllers\\SellController@index_provider_product');
+    Route::get('providers/{provider}/products', 'App\\Http\\Controllers\\SellController@show_provider_product');
 
     Route::get('refunds', 'App\\Http\\Controllers\\RefundController@index');
     Route::get('refunds/{refund}', 'App\\Http\\Controllers\\RefundController@show');

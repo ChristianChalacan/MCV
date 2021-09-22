@@ -3,29 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kind;
-use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Resources\Kind as KindResource;
+use App\Http\Resources\KindCollection;
 
 class KindController extends Controller
 {
     public function index()
     {
-        return Kind::all();
+        return new KindCollection(Kind::paginate(10));
     }
     public function show(Kind $kind)
     {
-        return $kind;
+        return response()->json(new KindResource($kind),200);
     }
     public function store(Request $request)
     {
         $kind = new Kind($request->all());
         $kind->save();
-        return response()->json($kind,201);
+        return response()->json(new KindResource($kind),201);
     }
     public function update(Request $request, Kind $kind)
     {
         $kind->update($request->all());
-        return response()->json($kind, 200);
+        return response()->json(new KindResource($kind),200);
 
     }
     public function delete(Kind $kind)

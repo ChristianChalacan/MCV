@@ -4,28 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Shipping;
 use Illuminate\Http\Request;
-use function Psy\sh;
+use App\Http\Resources\Shipping as ShippingResource;
+use App\Http\Resources\ShippingCollection;
 
 class ShippingController extends Controller
 {
     public function index()
     {
-        return Shipping::all();
+        return new ShippingCollection(Shipping::paginate(10));
+
     }
     public function show(Shipping $shipping)
     {
-        return $shipping;
+        return response()->json(new ShippingResource($shipping),200);
     }
     public function store(Request $request)
     {
         $shipping = new Shipping($request->all());
         $shipping->save();
-        return response()->json($shipping,201);
+        return response()->json(new ShippingResource($shipping),201);
     }
     public function update(Request $request, Shipping $shipping)
     {
         $shipping->update($request->all());
-        return response()->json($shipping, 200);
+        return response()->json(new ShippingResource($shipping),200);
 
     }
     public function delete(Shipping $shipping)

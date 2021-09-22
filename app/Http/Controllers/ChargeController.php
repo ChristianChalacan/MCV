@@ -4,27 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Charge;
 use Illuminate\Http\Request;
+use App\Http\Resources\Charge as ChargeResource;
+use App\Http\Resources\ChargeCollection;
 
 class ChargeController extends Controller
 {
     public function index()
     {
-        return Charge::all();
+        return new ChargeCollection(Charge::paginate(10));
     }
     public function show(Charge $charge)
     {
-        return $charge;
+        return response()->json(new ChargeResource($charge),200);
     }
     public function store(Request $request)
     {
         $charge = new Charge($request->all());
         $charge->save();
-        return response()->json($charge,201);
+        return response()->json(new ChargeResource($charge),201);
     }
     public function update(Request $request, Charge $charge)
     {
         $charge->update($request->all());
-        return response()->json($charge, 200);
+        return response()->json(new ChargeResource($charge),200);
 
     }
     public function delete(Charge $charge)
