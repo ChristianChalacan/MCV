@@ -26,7 +26,7 @@ class Entry extends JsonResource
             'rejection' => $this->rejection,
             'extra' => $this->extra,
             'observation' => $this->observation,
-            'available_weight' => $this->available_weight,
+            'available_weight' => $this->availableweight,
             'available_jabas' => $this->availablejabas,
             'user' => $this->user_id,
             'kind' => $this->kind_id,

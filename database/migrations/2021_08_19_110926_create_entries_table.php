@@ -22,9 +22,9 @@ class CreateEntriesTable extends Migration
             $table->boolean('vehicle');
             $table->boolean('hygiene');
             $table->double('weight');
-            $table->double('rejection');
-            $table->double('extra');
-            $table->text('observation');
+            $table->double('rejection')->nullable();
+            $table->double('extra')->nullable();
+            $table->text('observation')->nullable();
             $table->double('availableweight');
             $table->double('availablejabas');
             $table->timestamps();

@@ -22,18 +22,28 @@ class UsersTableSeeder extends Seeder
         // no se vuelva lento.
         $password = Hash::make('123123');
         User::create([
+            'name' => 'Super_administrador',
+            'email' => 'superadmin@prueba.com',
+            'password' => $password,
+            'role' => 'ROLE_SUPERADMIN'
+        ]);
+        User::create([
             'name' => 'Administrador',
             'email' => 'admin@prueba.com',
             'password' => $password,
+            'role' => 'ROLE_ADMIN'
         ]);
-        // Generar algunos usuarios para nuestra aplicacion
-        for ($i = 0; $i < 2; $i++) {
-            User::create([
-                'name' => $faker->name,
-                'email' => $faker->email,
-                'password' => $password,
-            ]);
-        }
-
+        User::create([
+            'name' => 'Produccion',
+            'email' => 'production@prueba.com',
+            'password' => $password,
+            'role' => 'ROLE_PRODUCTION'
+        ]);
+        User::create([
+            'name' => 'Transporte',
+            'email' => 'transportation@prueba.com',
+            'password' => $password,
+            'role' => 'ROLE_TRANSPORTATION'
+        ]);
     }
 }

@@ -19,14 +19,14 @@ class CreateProcessesTable extends Migration
             $table->time('hour');
             $table->integer('turn');
             $table->double('initial');
-            $table->integer('jabas');
-            $table->double('unit');
-            $table->double('packing');
+            $table->integer('jabas')->nullable();
+            $table->double('unit')->nullable();
+            $table->double('packing')->nullable();
             $table->double('net');
             $table->string('product');
             $table->string('lot', 30);
             $table->double('final');
-            $table->string('guia', 30);
+            $table->string('guia', 30)->nullable();
             $table->text('observation');
             $table->timestamps();
         });

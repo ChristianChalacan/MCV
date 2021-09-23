@@ -15,15 +15,15 @@ class CreateResearchTable extends Migration
     {
         Schema::create('research', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('feature',10);
-            $table->double('quantity');
-            $table->integer('valueone');
-            $table->integer('valuetwo');
-            $table->integer('valuethree');
-            $table->integer('valuefour');
-            $table->integer('valuefive');
-            $table->boolean('confirmed');
-            $table->char('organoleptic', 30);
+            $table->char('feature',10)->nullable();
+            $table->double('quantity')->nullable();
+            $table->integer('valueone')->nullable();
+            $table->integer('valuetwo')->nullable();
+            $table->integer('valuethree')->nullable();
+            $table->integer('valuefour')->nullable();
+            $table->integer('valuefive')->nullable();
+            $table->boolean('confirmed')->nullable();
+            $table->char('organoleptic', 30)->nullable();
             $table->timestamps();
         });
     }
