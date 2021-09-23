@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
-class CreateClientsTable extends Migration
+class AddRoleColumnUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +14,8 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->text('address');
-            $table->string('email')->unique()->nullable();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('role')->default(User::ROLE_PRODUCTION);
         });
     }
 
@@ -29,6 +26,8 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role');
+        });
     }
 }

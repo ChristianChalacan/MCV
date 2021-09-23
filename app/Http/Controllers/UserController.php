@@ -27,6 +27,7 @@ class UserController extends Controller
     }
     public function register(Request $request)
     {
+        $this->authorize('create', User::class);
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -76,14 +77,22 @@ class UserController extends Controller
 
     public function index()
     {
+        $this->authorize('viewAny', User::class);
         return new UserCollection(User::paginate(10));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, User $user)
     {
-        $user = Auth::user();
-        //$request->validate(self::$rules, self::$messages);
-        $user->update($request->all());
+        $this->authorize('update', $user);
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        $user->update([
+            'password' => Hash::make($request->get('password')),
+        ]);
         return response()->json($user, 200);
     }
 
